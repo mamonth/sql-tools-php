@@ -94,7 +94,7 @@ class Tools
                 {
                     // Is this is an escape character or is it a delimiter escaping itself?
                     $next = ( ($i + 1) >= $inputLength ? '' : $input{$i + 1} );
-                    if ( $char == '\\' || ( $char == $quote && $char == $next ) )
+                    if ( $char == '\\' && ( $char == $quote && $char == $next ) )
                     {
                         // If so, current char and next one are both part of the string constant.
                         $constant .= $char . $next;
