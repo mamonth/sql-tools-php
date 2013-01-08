@@ -27,7 +27,8 @@ class Index
     public static function sqlFactory( $sql )
     {
         // Check if this is an index definition
-        if ( !preg_match( '#^(PRIMARY KEY|KEY|FOREIGN KEY|UNIQUE INDEX|INDEX|UNIQUE)[^\w]#i', $sql, $match ) )
+        // @TODO move FOREIGN KEY and EXCLUDE to separate entity
+        if ( !preg_match( '#^(PRIMARY KEY|KEY|FOREIGN KEY|UNIQUE INDEX|INDEX|UNIQUE|EXCLUDE)[^\w]#i', $sql, $match ) )
         {
             return false;
         }
