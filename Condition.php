@@ -24,6 +24,15 @@ class Condition
     {
         // here must be parsing of $query to internal 
     }
+
+    /**
+     * @param null $query
+     * @return Condition
+     */
+    public static function factory( $query = null )
+    {
+        return new self( $query );
+    }
     
     /**
      * Enter description here...
@@ -76,11 +85,12 @@ class Condition
         
         return $this;
     }
-    
+
     /**
      * Enter description here...
      *
-     * @param array $clause
+     * @param array $clauses
+     *
      * @return Condition
      */
     public function orderBy( array $clauses )
@@ -96,6 +106,13 @@ class Condition
             $this->orderList[] = $column . ' ' . strtoupper( $direction );
         }
         
+        return $this;
+    }
+
+    public function dropOrder()
+    {
+        $this->orderList = array();
+
         return $this;
     }
     
