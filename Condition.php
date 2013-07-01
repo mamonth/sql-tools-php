@@ -89,12 +89,22 @@ class Condition
     /**
      * Enter description here...
      *
-     * @param array $clauses
+     * @param array|string $column
+     * @param bool         $asc
      *
      * @return Condition
      */
-    public function orderBy( array $clauses )
+    public function orderBy( $column, $asc = true )
     {
+        if( !is_array( $column ) )
+        {
+            $clauses = array( $column => $asc ? 'asc' : 'desc' );
+        }
+        else
+        {
+            $clauses = $column;
+        }
+
         foreach ( $clauses as $column => $direction )
         {
             if( !in_array( strtolower( $direction ), array('asc', 'desc') ) || is_int( $column ) )
@@ -192,7 +202,7 @@ class Condition
         }
         
         if( sizeof( $this->orderList ) )
-            $query[] = 'ORDER BY ' . implode( ' ', $this->orderList );
+            $query[] = 'ORDER BY ' . implode( ', ', $this->orderList );
         
         if( null !== $this->offset && null === $this->limit )
             $this->limit = 0;
