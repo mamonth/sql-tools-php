@@ -143,7 +143,7 @@ class Condition
      * Enter description here...
      *
      * @param integer $num
-     * @return DAOCondition
+     * @return Condition
      */
     public function offset( $num = null )
     {
